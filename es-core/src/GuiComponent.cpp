@@ -359,3 +359,4 @@ void GuiComponent::onHide()
 {
 	for(unsigned int i = 0; i < getChildCount(); i++)
 		getChild(i)->onHide();
+}
