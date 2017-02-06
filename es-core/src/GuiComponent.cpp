@@ -269,7 +269,7 @@ bool GuiComponent::advanceAnimation(unsigned char slot, unsigned int time)
  {
  	return mIsProcessing;
  }
-+
+
 		}
 		return true;
 	}else{
