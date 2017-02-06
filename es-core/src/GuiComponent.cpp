@@ -265,7 +265,11 @@ bool GuiComponent::advanceAnimation(unsigned char slot, unsigned int time)
 		if(done)
 		{
 			mAnimationMap[slot] = NULL;
-			delete anim;
+			delete anim;345,3 +345,17 @@ bool GuiComponent::isProcessing() const
+ {
+ 	return mIsProcessing;
+ }
++
 		}
 		return true;
 	}else{
@@ -344,3 +348,14 @@ bool GuiComponent::isProcessing() const
 {
 	return mIsProcessing;
 }
+
+void GuiComponent::onShow()
+{
+	for(unsigned int i = 0; i < getChildCount(); i++)
+		getChild(i)->onShow();
+}
+
+void GuiComponent::onHide()
+{
+	for(unsigned int i = 0; i < getChildCount(); i++)
+		getChild(i)->onHide();
