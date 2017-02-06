@@ -265,7 +265,7 @@ bool GuiComponent::advanceAnimation(unsigned char slot, unsigned int time)
 		if(done)
 		{
 			mAnimationMap[slot] = NULL;
-			delete anim;345,3 +345,17 @@ bool GuiComponent::isProcessing() const
+			delete anim;
  {
  	return mIsProcessing;
  }
