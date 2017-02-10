@@ -1,6 +1,9 @@
 #include "FileData.h"
 #include "SystemData.h"
 #include "Log.h"
+extern std::vector<std::string> mameBioses;
+extern std::vector<std::string> mameDevices;
+ 
 
 namespace fs = boost::filesystem;
 
@@ -345,6 +348,12 @@ void FileData::populateRecursiveFolder(FileData* folder, const std::vector<std::
 		if((searchExtensions.empty() && !fs::is_directory(filePath)) || (std::find(searchExtensions.begin(), searchExtensions.end(), extension) != searchExtensions.end()
                         && filePath.filename().string().compare(0, 1, ".") != 0)){
 			FileData* newGame = new FileData(GAME, filePath.generic_string(), systemData);
+			if (systemData->hasPlatformId(PlatformIds::ARCADE) || systemData->hasPlatformId(PlatformIds::NEOGEO)) {
+ 				if (std::find(mameBioses.begin(), mameBioses.end(), filePath.stem().generic_string()) != mameBioses.end()
+ 					|| std::find(mameDevices.begin(), mameDevices.end(), filePath.stem().generic_string()) != mameDevices.end()) {
+                     continue;
+ 				}
+ 			}
 			folder->addChild(newGame);
 			isGame = true;
 		}
